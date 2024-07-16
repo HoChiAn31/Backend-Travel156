@@ -215,45 +215,6 @@ const hotelController = {
       res.status(500).json({ message: "Internal server error" });
     }
   },
-  // async getFilterHotels(req, res) {
-  //   try {
-  //     const { city, pricepernight, quantityPeople } = req.query;
-  //     const whereClause = {};
-
-  //     if (city) {
-  //       whereClause.city = { [Op.like]: `%${city}%` };
-  //     }
-
-  //     if (pricepernight) {
-  //       whereClause.pricepernight = { [Op.lte]: pricepernight };
-  //     }
-
-  //     const hotels = await Hotel.findAll({ where: whereClause });
-
-  //     if (!hotels.length) {
-  //       return res.json([]);
-  //     }
-
-  //     if (quantityPeople) {
-  //       const availableHotels = await Promise.all(
-  //         hotels.map(async (hotel) => {
-  //           const rooms = await Room.findAll({ where: { hotelId: hotel.id } });
-  //           const hasAvailableRoom = rooms.some(
-  //             (room) => room.maxGuests >= quantityPeople
-  //           );
-  //           return hasAvailableRoom ? hotel.toJSON() : null;
-  //         })
-  //       );
-  //       const result = availableHotels.filter((hotel) => hotel !== null);
-  //       return res.json(result);
-  //     }
-
-  //     res.json(hotels);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ error: "Internal Server Error" });
-  //   }
-  // },
 
   async getFilterHotels(req, res) {
     try {
