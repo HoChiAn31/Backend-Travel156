@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const Sequelize = require("sequelize");
 const User = require("./src/models/user");
 const app = express();
-const port = process.env.DB_PORT || 3000;
-const models = require("./src/models/index");
+const port = process.env.MYSQL_ADDON_PORT || 3000;
 const dbConfig = require("./src/config/config");
 const routes = require("./src/routes/index");
 const sequelize = new Sequelize(
@@ -16,6 +15,7 @@ const sequelize = new Sequelize(
   {
     host: dbConfig.host,
     dialect: dbConfig.dialect,
+    dialectModule: require("mysql2"),
   }
 );
 
