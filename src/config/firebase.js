@@ -1,12 +1,20 @@
-const admin = require("firebase-admin");
-// const serviceAccount = require("./serviceAccountKey.json");
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+const { initializeApp } = require("firebase/app");
+const { getAuth } = require("firebase/auth");
+const { getStorage } = require("firebase/storage");
 require("dotenv").config();
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: `${process.env.FIREBASE_STORAGE_BUCKET}.appspot.com`,
-});
 
-const bucket = admin.storage().bucket();
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+};
 
-module.exports = { bucket };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+module.exports = { storage, auth };
