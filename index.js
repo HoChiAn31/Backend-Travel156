@@ -36,7 +36,7 @@ routes(app, sequelize);
 app.get("/", async (req, res) => {
   // const users = await db.User.findAll();
   // res.json(users);
-  res.send("success");
+  res.send("Hello World!");
 });
 // app.get("/hotels", async (req, res) => {
 //   res.send("success hotels");
@@ -56,9 +56,7 @@ app.get("/", async (req, res) => {
 // });
 
 // Start server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`Listening to port ${port}`));
 
 // Sync database
 // db.sequelize
