@@ -177,6 +177,7 @@
 const models = require("../models/index");
 const { Op } = require("sequelize");
 const Hotel = models.Hotel;
+
 const Room = models.Room;
 const hotelService = require("../services/hotelServices");
 

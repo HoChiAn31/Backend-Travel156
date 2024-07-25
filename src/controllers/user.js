@@ -2,36 +2,36 @@ const models = require("../models/index");
 const User = models.User;
 const userService = require("../services/userService");
 const userController = {
-  // async createUser(req, res) {
-  //   try {
-  //     const newUser = await User.create(req.body);
-  //     res.status(201).json(newUser);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ message: "Internal server error" });
-  //   }
-  // },
   async createUser(req, res) {
     try {
-      const userData = {
-        password: req.body.password,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        fullName: req.body.fullName,
-        lastName: req.body.lastName,
-        firstName: req.body.firstName,
-        address: req.body.address,
-      };
-
-      const file = req.file; // Lấy file từ request
-      const newUser = await userService.createUser(userData, file);
-
+      const newUser = await User.create(req.body);
       res.status(201).json(newUser);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
+  // async createUser(req, res) {
+  //   try {
+  //     const userData = {
+  //       password: req.body.password,
+  //       email: req.body.email,
+  //       phoneNumber: req.body.phoneNumber,
+  //       fullName: req.body.fullName,
+  //       lastName: req.body.lastName,
+  //       firstName: req.body.firstName,
+  //       address: req.body.address,
+  //     };
+
+  //     const file = req.file; // Lấy file từ request
+  //     const newUser = await userService.createUser(userData, file);
+
+  //     res.status(201).json(newUser);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ message: "Internal server error" });
+  //   }
+  // },
   async getAllUsers(req, res) {
     try {
       const users = await User.findAll();
@@ -65,26 +65,6 @@ const userController = {
       res.status(500).json({ message: "Internal server error" });
     }
   },
-  // async updateUserByEmail(req, res) {
-  //   try {
-  //     const { email } = req.params;
-  //     const updateData = req.body; // Assuming the fields to update are sent in the request body
-
-  //     const [updated] = await User.update(updateData, {
-  //       where: { email: email },
-  //     });
-
-  //     if (updated) {
-  //       const updatedUser = await User.findOne({ where: { email: email } });
-  //       res.status(200).json(updatedUser);
-  //     } else {
-  //       res.status(404).json({ message: "User not found" });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ message: "Internal server error" });
-  //   }
-  // },
   async updateUserByEmail(req, res) {
     try {
       const { email } = req.params;
